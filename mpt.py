@@ -42,8 +42,8 @@ pipe = pipeline('text-generation',
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
-fileh = open(f'./test/dataset.txt') 
-dataset = [l.strip() for l in fileh.readlines()]
+with open(f'./test/dataset.txt', 'r') as fp:
+            dataset = [l.strip() for l in fp.readlines()]
 
 res = []
 for inst in dataset:
