@@ -43,7 +43,7 @@ pipe = pipeline('text-generation',
                 )
 
 with open(f'./test/dataset.txt', 'r') as fp:
-            dataset = [l.strip() for l in fp.readlines()]
+    dataset = [l.strip() for l in fp.readlines()]
 
 res = []
 for inst in dataset:
