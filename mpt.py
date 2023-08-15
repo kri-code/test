@@ -42,7 +42,7 @@ pipe = pipeline('text-generation',
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
-with open(f'./test/dataset.txt', 'r') as fp:
+with open('dataset.txt', 'r', encoding='uft_8') as fp:
     dataset = [l.strip() for l in fp.readlines()]
 
 res = []
