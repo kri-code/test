@@ -49,7 +49,7 @@ res = []
 for inst in dataset:
   print(inst)
   a = pipe(inst)
-  res.append(a[0]["generated_text'].strip())
+  res.append(a[0]["generated_text'])
 with open(f'.test/ncm_mptChat.txt', 'wb') as fp:
   for r in res:
     fp.write(r.encode("utf-8") + "\n".encode("utf-8"))
