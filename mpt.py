@@ -60,7 +60,7 @@ pipe = pipeline('text-generation',
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
-with open(f'ncm.txt', 'r') as fp:
+with open(f'dataset.txt', 'r') as fp:
             dataset = [l.strip() for l in fp.readlines()]
 
 res = []
