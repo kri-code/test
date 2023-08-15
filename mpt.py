@@ -7,9 +7,9 @@ Original file is located at
     https://colab.research.google.com/drive/1zHG7H2z-HhSqySe5gSoShRqSlIqfBVe-
 """
 
-!pip install -qU transformers accelerate einops langchain wikipedia xformers
+pip install -qU transformers accelerate einops langchain wikipedia xformers
 
-!pip install -qU triton
+pip install -qU triton
 
 import torch
 import transformers
