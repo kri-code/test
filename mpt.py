@@ -42,7 +42,7 @@ pipe = pipeline('text-generation',
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
-with open(f"dataset.txt", "r") as fp:
+with open(f"../dataset.txt", "r") as fp:
             dataset = [l.strip() for l in fp.readlines()]
 
 res = []
@@ -50,6 +50,6 @@ for inst in dataset:
   print(inst)
   a = pipe(inst)
   res.append(a[0]["generated_text"].strip())
-with open(f"ncm_mptChat.txt", "wb") as fp:
+with open(f"../ncm_mptChat.txt", "wb") as fp:
   for r in res:
     fp.write(r.encode("utf-8") + "\n".encode("utf-8"))
