@@ -10,10 +10,6 @@ pip install torch
 pip install transformers
 pip install einops
 
-import torch
-import transformers
-import einops
-
 name = 'mosaicml/mpt-7b-chat'
 
 config = transformers.AutoConfig.from_pretrained(name, trust_remote_code=True)
