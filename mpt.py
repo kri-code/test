@@ -47,6 +47,6 @@ for inst in dataset:
   print(inst)
   a = pipe(inst)
   res.append(a[0]["generated_text"].strip())
-with open('ncm_mptChat.txt', 'wb') as fp:
+with open('ncm_mptChat.txt', 'w') as fp:
   for r in res:
     fp.write(r + "\n")
