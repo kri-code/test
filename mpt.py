@@ -13,7 +13,6 @@ import einops
 name = 'mosaicml/mpt-7b-chat'
 
 config = transformers.AutoConfig.from_pretrained(name, trust_remote_code=True)
-config.attn_config['attn_impl'] = 'triton'
 config.init_device = 'cuda:0' # For fast initialization directly on GPU!
 
 model = transformers.AutoModelForCausalLM.from_pretrained(
