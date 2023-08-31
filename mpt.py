@@ -42,7 +42,7 @@ class StopOnTokens(StoppingCriteria):
 
 stopping_criteria = StoppingCriteriaList([StopOnTokens()])
 
-pipe = pipeline('conversational',
+pipe = pipeline('text-generation',
                 model=model,
                 tokenizer=tokenizer,
                 device='cuda:0',
