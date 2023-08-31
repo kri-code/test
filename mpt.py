@@ -36,7 +36,7 @@ stop_token_ids = [
     ]
 ]
 
-stop_token_ids = [torch.LongTensor(x).to(device) for x in stop_token_ids]
+stop_token_ids = [torch.LongTensor(x).to('cuda:0') for x in stop_token_ids]
 
 # define custom stopping criteria object
 class StopOnTokens(StoppingCriteria):
