@@ -9,6 +9,7 @@ Original file is located at
 import torch
 import transformers
 import einops
+from transformers import StoppingCriteria, StoppingCriteriaList
 
 name = 'mosaicml/mpt-7b-chat'
 
