@@ -28,14 +28,28 @@ tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
 import torch
 from transformers import pipeline
 
+# mtp-7b is trained to add "<|endoftext|>" at the end of generations
+stop_token_ids = tokenizer.convert_tokens_to_ids(["<|endoftext|>"])
+
+# define custom stopping criteria object
+class StopOnTokens(StoppingCriteria):
+    def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
+        for stop_id in stop_token_ids:
+            if input_ids[0][-1] == stop_id:
+                return True
+        return False
+
+stopping_criteria = StoppingCriteriaList([StopOnTokens()])
+
 pipe = pipeline('text-generation',
                 model=model,
                 tokenizer=tokenizer,
                 device='cuda:0',
+                stopping_criteria=stopping_criteria,  # without this model will ramble
                 temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
                 top_p=0.15,  # select from top tokens whose probability add up to 15%
                 top_k=0,  # select from top 0 tokens (because zero, relies on top_p)
-                max_new_tokens=100,  # mex number of tokens to generate in the output
+                max_new_tokens=64,  # mex number of tokens to generate in the output
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
