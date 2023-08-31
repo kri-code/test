@@ -54,14 +54,28 @@ pipe = pipeline('text-generation',
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
+from langchain import PromptTemplate, LLMChain
+from langchain.llms import HuggingFacePipeline
+
+# template for an instruction with no input
+prompt = PromptTemplate(
+    input_variables=["instruction"],
+    template="{instruction}"
+)
+
+llm = HuggingFacePipeline(pipeline=pipe)
+
+llm_chain = LLMChain(llm=llm, prompt=prompt)
+
 with open('dataset.txt', 'r') as fp:
     dataset = [l.strip() for l in fp.readlines()]
 
 res = []
 for inst in dataset:
   print(inst)
-  a = pipe(inst)
-  res.append(a[0]["generated_text"].strip())
+  res.append(llm_chain.predict(instruction=inst).lstrip())
+  #a = pipe(inst)
+  #res.append(a[0]["generated_text"].strip())
 with open('ncm_mptChat.txt', 'w') as fp:
   for r in res:
     fp.write(r + "\n")
