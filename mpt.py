@@ -116,11 +116,11 @@ def chat_trim(chat_chain, query):
     # return final response
     return chat_chain.memory.chat_memory.messages[-1].content
 
-
+print(chat_trim(chat, "what is two plus two?))
 
 with open('dataset.txt', 'r') as fp:
     dataset = [l.strip() for l in fp.readlines()]
-
+"""
 res = []
 count = 0
 for inst in dataset:
@@ -133,4 +133,4 @@ for inst in dataset:
   #res.append(a[0]["generated_text"].strip())
 with open('ncm_mptChat.txt', 'w') as fp:
   for r in res:
-    fp.write(r + "\n")
+    fp.write(r + "\n")"""
