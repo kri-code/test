@@ -66,7 +66,7 @@ llm = HuggingFacePipeline(pipeline=pipe)
 
 llm_chain = LLMChain(llm=llm, prompt=prompt)
 
-question = "What is two plus two?"
+question = "Is the sky blue or black?"
 print(llm_chain.predict(question = question))
 
 """
