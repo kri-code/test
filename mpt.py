@@ -75,7 +75,7 @@ llm_chain = LLMChain(llm=llm, prompt=prompt)
 
 
 from langchain.chains.conversation.memory import ConversationBufferWindowMemory
-
+"""
 # initializing the conversational memory
 memory = ConversationBufferWindowMemory(
     memory_key="history",  # important to align with agent prompt (below)
@@ -116,11 +116,21 @@ def chat_trim(chat_chain, query):
     # return final response
     return chat_chain.memory.chat_memory.messages[-1].content
 
-print(chat_trim(chat, "What is your name?"))
+print(chat_trim(chat, "What is your name?"))"""
 
+from langchain import PromptTemplate, HuggingFaceHub, LLMChain
+template = """Question: {question}
+
+Answer: Let's think step by step."""
+prompt = PromptTemplate(template=template, input_variables=["question"])
+
+question = "When was Google founded?"
+print(llm_chain.run(question))
+
+"""
 with open('dataset.txt', 'r') as fp:
     dataset = [l.strip() for l in fp.readlines()]
-"""
+
 res = []
 count = 0
 for inst in dataset:
