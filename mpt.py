@@ -116,7 +116,7 @@ def chat_trim(chat_chain, query):
     # return final response
     return chat_chain.memory.chat_memory.messages[-1].content
 
-chat.memory
+print(chat.memory)
 
 
 """
