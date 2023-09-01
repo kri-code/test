@@ -75,6 +75,8 @@ llm_chain = LLMChain(llm=llm, prompt=prompt)
 question = "When was Google founded?"
 print(llm_chain.run(question))
 
+print(llm_chain)
+
 """
 with open('dataset.txt', 'r') as fp:
     dataset = [l.strip() for l in fp.readlines()]
