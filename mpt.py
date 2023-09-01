@@ -20,8 +20,8 @@ model = transformers.AutoModelForCausalLM.from_pretrained(
   name,
   config=config,
   torch_dtype=torch.bfloat16, # Load model weights in bfloat16
-  trust_remote_code=True
-)
+  trust_remote_code=True,
+  max_seq_len=8192)
 
 from transformers import AutoTokenizer
 tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
@@ -74,13 +74,60 @@ llm = HuggingFacePipeline(pipeline=pipe)
 
 llm_chain = LLMChain(llm=llm, prompt=prompt)
 
+
+from langchain.chains.conversation.memory import ConversationBufferWindowMemory
+
+# initializing the conversational memory
+memory = ConversationBufferWindowMemory(
+    memory_key="history",  # important to align with agent prompt (below)
+    k=5,
+    return_only_outputs=True
+)
+
+from langchain.chains import ConversationChain
+
+# initialize the agent
+chat = ConversationChain(
+    llm=llm,
+    memory=memory,
+    verbose=True
+)
+
+# The default prompt template will cause the model to return longer text --> modify it to be more concise
+chat.prompt.template = \
+"""The following is a friendly conversation between a human and an AI. The AI is conversational but concise in its responses without rambling. If the AI does not know the answer to a question, it truthfully says it does not know.
+
+Current conversation:
+{history}
+Human: {input}
+AI:"""
+
+def chat_trim(chat_chain, query):
+    # create response
+    chat_chain.predict(input=query)
+    # check for double newlines (also happens often)
+    chat.memory.chat_memory.messages[-1].content = chat.memory.chat_memory.messages[-1].content.split('\n\n')[0]
+    # strip any whitespace
+    chat.memory.chat_memory.messages[-1].content = chat.memory.chat_memory.messages[-1].content.strip()
+    # check for stop text at end of output
+    for stop_text in ['Human:', 'AI:', '[]']:
+        chat.memory.chat_memory.messages[-1].content = chat.memory.chat_memory.messages[-1].content.removesuffix(stop_text)
+    # strip again
+    chat.memory.chat_memory.messages[-1].content = chat.memory.chat_memory.messages[-1].content.strip()
+    # return final response
+    return chat_chain.memory.chat_memory.messages[-1].content
+
+
+
 with open('dataset.txt', 'r') as fp:
     dataset = [l.strip() for l in fp.readlines()]
 
 res = []
 for inst in dataset:
   print(inst)
-  res.append(llm_chain.predict(instruction=inst).lstrip())
+  ans = chat_trim(chat, inst)
+  print("ANSW:", ans)
+  res.append(ans)
   #a = pipe(inst)
   #res.append(a[0]["generated_text"].strip())
 with open('ncm_mptChat.txt', 'w') as fp:
