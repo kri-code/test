@@ -52,7 +52,7 @@ pipe = pipeline(task = 'text-generation',
                 return_full_text=True,
                 tokenizer=tokenizer,
                 device='cuda:0',
-                stopping_criteria=stopping_criteria,  # without this model will ramble
+                #stopping_criteria=stopping_criteria,  # without this model will ramble
                 temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
                 top_p=0.15,  # select from top tokens whose probability add up to 15%
                 top_k=0,  # select from top 0 tokens (because zero, relies on top_p)
