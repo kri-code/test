@@ -28,22 +28,16 @@ tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
 import torch
 from transformers import pipeline
 
-# we create a list of stopping criteria
-stop_token_ids = [
-    tokenizer.convert_tokens_to_ids(x) for x in [
-        ['Question', ':'], ['Answer', ':']
-    ]
-]
+stop_token_ids = tokenizer.convert_tokens_to_ids(["<|endoftext|>"])
 
-stop_token_ids = [torch.LongTensor(x).to('cuda:0') for x in stop_token_ids]
-
-# define custom stopping criteria object
+# Define a custom stopping criteria
 class StopOnTokens(StoppingCriteria):
     def __call__(self, input_ids: torch.LongTensor, scores: torch.FloatTensor, **kwargs) -> bool:
-        for stop_ids in stop_token_ids:
-            if torch.eq(input_ids[0][-len(stop_ids):], stop_ids).all():
+        for stop_id in stop_token_ids:
+            if input_ids[0][-1] == stop_id:
                 return True
         return False
+
 
 stopping_criteria = StoppingCriteriaList([StopOnTokens()])
 
