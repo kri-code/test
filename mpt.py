@@ -70,10 +70,10 @@ prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm = HuggingFacePipeline(pipeline=pipe)
 
-llm_chain = LLMChain(llm=llm, prompt=prompt, verbose=True)
+llm_chain = LLMChain(llm=llm, prompt=prompt)
 
 question = "When was Google founded?"
-print(llm_chain.run(question = question))
+print(llm_chain.run(question))
 
 """
 with open('dataset.txt', 'r') as fp:
