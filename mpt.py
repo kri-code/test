@@ -70,7 +70,7 @@ prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm = HuggingFacePipeline(pipeline=pipe)
 
-llm_chain = LLMChain(llm=llm, prompt=prompt)
+llm_chain = LLMChain(llm=llm, prompt=prompt, verbose=True)
 
 question = "When was Google founded?"
 print(llm_chain.predict(question = question))
