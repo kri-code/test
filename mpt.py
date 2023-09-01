@@ -125,7 +125,7 @@ res = []
 count = 0
 for inst in dataset:
   print(inst)
-  res.append(chat_trim(chat, inst))
+  print(chat_trim(chat, inst))
   print("------------------------------")
   print(res[count])
   count += 1
