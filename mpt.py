@@ -72,7 +72,7 @@ llm = HuggingFacePipeline(pipeline=pipe)
 
 llm_chain = LLMChain(llm=llm, prompt=prompt)
 
-question = "When was Google founded?"
+question = "What is two plus two?"
 print(llm_chain.run(question))
 
 """
