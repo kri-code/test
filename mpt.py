@@ -65,17 +65,15 @@ from langchain.llms import HuggingFacePipeline
 
 template = """Question: {question}
 
-Answer: """
+Answer: Let's think step by step."""
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm = HuggingFacePipeline(pipeline=pipe)
 
-llm_chain = LLMChain(llm=llm, prompt=prompt, return_final_only=True)
+llm_chain = LLMChain(llm=llm, prompt=prompt)
 
 question = "When was Google founded?"
 print(llm_chain.run(question))
-
-print(llm_chain)
 
 """
 with open('dataset.txt', 'r') as fp:
