@@ -59,7 +59,7 @@ from langchain.llms import HuggingFacePipeline
 
 template = """Question: {question}
 
-Answer: Answer in 2 to 3 sentences."""
+Answer: Be concise in your responses without rambling. If you do not know the answer to a question, truthfully say that you do not know."""
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm = HuggingFacePipeline(pipeline=pipe)
