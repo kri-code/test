@@ -20,8 +20,7 @@ model = transformers.AutoModelForCausalLM.from_pretrained(
   name,
   config=config,
   torch_dtype=torch.bfloat16, # Load model weights in bfloat16
-  trust_remote_code=True,
-  max_seq_len=8192)
+  trust_remote_code=True)
 
 from transformers import AutoTokenizer
 tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
