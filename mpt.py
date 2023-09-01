@@ -31,7 +31,7 @@ from transformers import pipeline
 # we create a list of stopping criteria
 stop_token_ids = [
     tokenizer.convert_tokens_to_ids(x) for x in [
-        ['Human', ':'], ['AI', ':']
+        ['Question', ':'], ['Answer', ':']
     ]
 ]
 
@@ -65,7 +65,7 @@ from langchain.llms import HuggingFacePipeline
 
 template = """Question: {question}
 
-Answer: Let's think step by step."""
+Answer: """
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm = HuggingFacePipeline(pipeline=pipe)
