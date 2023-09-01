@@ -63,22 +63,14 @@ pipe = pipeline(task = 'text-generation',
 from langchain import PromptTemplate, LLMChain
 from langchain.llms import HuggingFacePipeline
 
-# template for an instruction with no input
-prompt = PromptTemplate(
-    input_variables=["instruction"],
-    template="{instruction}"
-)
-
-llm = HuggingFacePipeline(pipeline=pipe)
-
-llm_chain = LLMChain(llm=llm, prompt=prompt)
-
-
-from langchain import PromptTemplate, HuggingFaceHub, LLMChain
 template = """Question: {question}
 
 Answer: Let's think step by step."""
 prompt = PromptTemplate(template=template, input_variables=["question"])
+
+llm = HuggingFacePipeline(pipeline=pipe)
+
+llm_chain = LLMChain(llm=llm, prompt=prompt)
 
 question = "When was Google founded?"
 print(llm_chain.run(question))
