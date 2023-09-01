@@ -73,7 +73,7 @@ llm = HuggingFacePipeline(pipeline=pipe)
 llm_chain = LLMChain(llm=llm, prompt=prompt)
 
 question = "What is two plus two?"
-print(llm_chain.run(question))
+print(llm_chain.predict(question = question))
 
 """
 with open('dataset.txt', 'r') as fp:
