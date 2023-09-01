@@ -73,7 +73,7 @@ llm = HuggingFacePipeline(pipeline=pipe)
 llm_chain = LLMChain(llm=llm, prompt=prompt, verbose=True)
 
 question = "When was Google founded?"
-print(llm_chain.predict(question = question))
+print(llm_chain.run(question = question))
 
 """
 with open('dataset.txt', 'r') as fp:
