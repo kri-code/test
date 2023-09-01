@@ -116,8 +116,7 @@ def chat_trim(chat_chain, query):
     # return final response
     return chat_chain.memory.chat_memory.messages[-1].content
 
-res = chat.predict(input='hi how are you?')
-print(res)
+print(chat_trim(chat, 'hi how are you?'))
 
 
 """
