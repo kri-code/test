@@ -66,10 +66,7 @@ llm = HuggingFacePipeline(pipeline=pipe)
 
 llm_chain = LLMChain(llm=llm, prompt=prompt)
 
-question = "Is the sky blue or black?"
-print(llm_chain.predict(question = question))
 
-"""
 with open('dataset.txt', 'r') as fp:
     dataset = [l.strip() for l in fp.readlines()]
 
@@ -77,7 +74,7 @@ res = []
 count = 0
 for inst in dataset:
   print(inst)
-  print(chat_trim(chat, inst))
+  res.append(llm_chain.predict(question = inst))
   print("------------------------------")
   print(res[count])
   count += 1
@@ -85,4 +82,5 @@ for inst in dataset:
   #res.append(a[0]["generated_text"].strip())
 with open('ncm_mptChat.txt', 'w') as fp:
   for r in res:
-    fp.write(r + "\n")"""
+    fp.write(r + "\n")
+    
