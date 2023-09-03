@@ -59,7 +59,7 @@ from langchain.llms import HuggingFacePipeline
 
 template = """Question: {question}
 
-Answer: Be conversational without rambling."""
+Answer: Be conversational and answer truthfully without rambling."""
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm = HuggingFacePipeline(pipeline=pipe)
@@ -80,7 +80,7 @@ for inst in dataset:
   count += 1
   #a = pipe(inst)
   #res.append(a[0]["generated_text"].strip())
-with open('ncm_mptChat.txt', 'w') as fp:
+with open('true_mptChat.txt', 'w') as fp:
   for r in res:
     fp.write(r + "\n")
     
