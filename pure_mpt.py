@@ -54,24 +54,19 @@ pipe = pipeline(task = 'text-generation',
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
-dialog = "what is two plus two?"
-generate_text = pipe(dialog)
-print(generate_text[0]["generated_text"])
 
-"""
 with open('dataset.txt', 'r') as fp:
     dataset = [l.strip() for l in fp.readlines()]
 
 res = []
-count = 0
 for inst in dataset:
   print(inst)
-  res.append(llm_chain.predict(question = inst))
-  print("------------------------------")
-  print(res[count])
-  count += 1
+  generate_text = pipe(inst)
+  print("---------------------------------------------")
+  print(generate_text[0]["generated_text"])
+  res.append(generate_text[0]["generated_text"])
   #a = pipe(inst)
   #res.append(a[0]["generated_text"].strip())
-with open('ncm_mptChat.txt', 'w') as fp:
+with open('pure_mptChat.txt', 'w') as fp:
   for r in res:
-    fp.write(r + "\n")"""
+    fp.write(r + "\n")
