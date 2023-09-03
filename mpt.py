@@ -50,7 +50,7 @@ pipe = pipeline(task = 'text-generation',
                 temperature=0.1,  # 'randomness' of outputs, 0.0 is the min and 1.0 the max
                 top_p=0.15,  # select from top tokens whose probability add up to 15%
                 top_k=0,  # select from top 0 tokens (because zero, relies on top_p)
-                max_new_tokens=70,  # mex number of tokens to generate in the output
+                max_new_tokens=100,  # mex number of tokens to generate in the output
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 
@@ -59,7 +59,7 @@ from langchain.llms import HuggingFacePipeline
 
 template = """Question: {question}
 
-Answer: Be conversational and answer truthfully without rambling."""
+Answer: You are a nice chatbot having a conversation with a human. Be concise with your answers without rambling."""
 prompt = PromptTemplate(template=template, input_variables=["question"])
 
 llm = HuggingFacePipeline(pipeline=pipe)
