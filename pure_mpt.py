@@ -3,7 +3,7 @@ import transformers
 import einops
 from transformers import StoppingCriteria, StoppingCriteriaList
 
-name = 'mosaicml/mpt-7b-chat'
+name = 'mosaicml/mpt-7b-instruct'
 
 config = transformers.AutoConfig.from_pretrained(name, trust_remote_code=True)
 config.init_device = 'cuda:0' # For fast initialization directly on GPU!
@@ -15,7 +15,7 @@ model = transformers.AutoModelForCausalLM.from_pretrained(
   trust_remote_code=True)
 
 from transformers import AutoTokenizer
-tokenizer = AutoTokenizer.from_pretrained(name)
+tokenizer = AutoTokenizer.from_pretrained("EleutherAI/gpt-neox-20b")
 
 import torch
 from transformers import pipeline
