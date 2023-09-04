@@ -43,7 +43,7 @@ pipe = pipeline(task = 'text-generation',
                 top_p=0.15,  # select from top tokens whose probability add up to 15%
                 top_k=0,  # select from top 0 tokens (because zero, relies on top_p)
                 max_new_tokens=100,  # mex number of tokens to generate in the output
-                use_cache = True
+                use_cache = True,
                 repetition_penalty=1.1  # without this output begins repeating
                 )
 with torch.autocast('cuda', dtype=torch.bfloat16):
