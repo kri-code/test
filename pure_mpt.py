@@ -46,7 +46,7 @@ pipe = pipeline(task = 'text-generation',
                 use_cache = True,
                 repetition_penalty=1.1  # without this output begins repeating
                 )
-with torch.autocast('cuda', dtype=torch.bfloat16):
+with torch.autocast('cuda', dtype=torch.float16):
   print(pipe('Here is a recipe for vegan banana bread:\n'))
 
 """
