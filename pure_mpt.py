@@ -46,8 +46,10 @@ pipe = pipeline(task = 'text-generation',
                 use_cache = True,
                 repetition_penalty=1.1  # without this output begins repeating
                 )
+q = "what is your name?"
 with torch.autocast('cuda', dtype=torch.float16):
-  print(pipe('Here is a recipe for vegan banana bread:\n'))
+  a = pipe(q)
+  print(a[0]["generated_text"])
 
 """
 with open('dataset.txt', 'r') as fp:
