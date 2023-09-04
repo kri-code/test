@@ -46,7 +46,7 @@ pipe = pipeline(task = 'text-generation',
                 use_cache = True,
                 repetition_penalty=1.1  # without this output begins repeating
                 )
-q = "what is your name?"
+q = "how old are you?"
 with torch.autocast('cuda', dtype=torch.float16):
   a = pipe(q)
   print(a[0]["generated_text"])
