@@ -62,7 +62,7 @@ class dolly_finetune:
         self.tokenizer = AutoTokenizer.from_pretrained("databricks/dolly-v2-3b", padding_side="left")
 
 
-        data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
+        data_collator = DataCollatorForLanguageModeling(tokenizer=self.tokenizer, mlm=False)
 
         
         self.trainer = Trainer(
