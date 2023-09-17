@@ -64,15 +64,12 @@ class dolly_finetune:
             model=self.model,
             train_dataset=self.train_dataset,
             eval_dataset=self.test_dataset,
-            formatting_func=self.formatting_func,
             max_seq_length=1048,
             tokenizer=self.tokenizer,
             args=self.training_args,  # HF Trainer arguments
         )
     
-    @staticmethod
-    def formatting_func(example) -> List[str]:
-        return [f"### Question: {example['Context']}\n ### Answer: {example['Response']}"]
+   
         
     def train(self):
         self.trainer.train()
