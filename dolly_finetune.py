@@ -27,7 +27,7 @@ class dolly_finetune:
     def __init__(self,
                  model_name: "dolly-v2-3b",
                  device_id: int = 1,
-                 batch_size: int = 128,
+                 batch_size: int = 8,
                  learning_rate: float = 2e-4,
                  logging_steps: int = 50,
                  max_steps: int = 1000):
@@ -61,12 +61,16 @@ class dolly_finetune:
         self.model = AutoModelForCausalLM.from_pretrained("databricks/dolly-v2-3b", device_map="auto", torch_dtype=torch.bfloat16)
         self.tokenizer = AutoTokenizer.from_pretrained("databricks/dolly-v2-3b", padding_side="left")
 
+
+        data_collator = DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False)
+
         
         self.trainer = Trainer(
             model=self.model,
             train_dataset=self.train_dataset,
             eval_dataset=self.test_dataset,
             tokenizer=self.tokenizer,
+            data_collator=data_collator,
             args=self.training_args,  # HF Trainer arguments
         )
     
