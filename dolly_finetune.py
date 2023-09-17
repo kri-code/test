@@ -68,7 +68,6 @@ class dolly_finetune:
             data_collator=self.data_collator,
             train_dataset=self.train_dataset,
             eval_dataset=self.test_dataset,
-            max_seq_length=1048,
             tokenizer=self.tokenizer,
             args=self.training_args,  # HF Trainer arguments
         )
