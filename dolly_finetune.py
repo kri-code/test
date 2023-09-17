@@ -62,7 +62,7 @@ class dolly_finetune:
         self.trainer = SFTTrainer(
             model=self.model,
             train_dataset=self.train_dataset,
-            test_dataset=self.test_dataset,
+            eval_dataset=self.test_dataset,
             formatting_func=self.formatting_func,
             max_seq_length=1048,
             tokenizer=self.tokenizer,
