@@ -25,7 +25,7 @@ from trl import SFTTrainer
 
 class dolly_finetune:
     def __init__(self,
-                 model_name: "dolly-v2-7b",
+                 model_name: "dolly-v2-3b",
                  device_id: int = 1,
                  batch_size: int = 1,
                  learning_rate: float = 2e-4,
@@ -78,7 +78,7 @@ class dolly_finetune:
         self.trainer.train()
 
 
-d = dolly_finetune(model_name="dolly-v2-7b")
+d = dolly_finetune(model_name="dolly-v2-3b")
 d.train()
         
         
