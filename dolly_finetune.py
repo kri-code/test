@@ -61,6 +61,8 @@ class dolly_finetune:
         self.trainer.train()
 
 
+d = dolly_finetune()
+d.train()
         
         
         
