@@ -60,7 +60,7 @@ class dolly_finetune:
         self.tokenizer = AutoTokenizer.from_pretrained("databricks/dolly-v2-3b", padding_side="left")
         
         self.trainer = Trainer(
-            model=self.base_model,
+            model=self.model,
             train_dataset=self.train_dataset,
             test_dataset=self.test_dataset,
             formatting_func=self.formatting_func,
