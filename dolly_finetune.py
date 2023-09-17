@@ -40,7 +40,7 @@ class dolly_finetune:
         print(dataset[1])
 
         def tokenize_function(examples):
-            return self.tokenizer(examples["text"], padding="max_length", truncation=True)
+            return self.tokenizer(examples, padding="max_length", truncation=True)
 
         self.dataset = dataset.map(tokenize_function, batched=True)
 
