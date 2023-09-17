@@ -16,7 +16,8 @@ from transformers import (
     AutoModel,
     BitsAndBytesConfig,
     TrainingArguments,
-    Trainer
+    Trainer,
+    DataCollatorForLanguageModeling
 )
 from trl import SFTTrainer
 
