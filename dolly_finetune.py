@@ -27,7 +27,7 @@ class dolly_finetune:
     def __init__(self,
                  model_name: "dolly-v2-3b",
                  device_id: int = 1,
-                 batch_size: int = 1,
+                 batch_size: int = 128,
                  learning_rate: float = 2e-4,
                  logging_steps: int = 50,
                  max_steps: int = 1000):
