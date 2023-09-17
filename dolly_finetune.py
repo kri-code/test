@@ -62,7 +62,7 @@ class dolly_finetune:
         self.trainer.train()
 
 
-d = dolly_finetune(model_name: "dolly-v2-7b")
+d = dolly_finetune(model_name="dolly-v2-7b")
 d.train()
         
         
