@@ -37,6 +37,7 @@ class dolly_finetune:
                  
         dataset = load_dataset("Amod/mental_health_counseling_conversations")
         dataset = dataset["train"]
+        print(dataset["train"][1])
 
         def tokenize_function(examples):
             return self.tokenizer(examples["text"], padding="max_length", truncation=True)
