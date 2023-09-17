@@ -37,12 +37,11 @@ class dolly_finetune:
                  
         dataset = load_dataset("Amod/mental_health_counseling_conversations")
         dataset = dataset["train"]
-        print(dataset[1])
 
-        def tokenize_function(examples):
-            return self.tokenizer(examples, padding="max_length", truncation=True)
-
-        self.dataset = dataset.map(tokenize_function, batched=True)
+        dataset = TextDataset(
+            tokenizer=self.tokenizer,
+            dataset_path=dataset,
+            block_size=128)
 
         out_dir = f"./medicine_results/.model_name"
         out_logs = f"./medicine_results/.logs"
