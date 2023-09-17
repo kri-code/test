@@ -31,13 +31,15 @@ class dolly_finetune:
                  learning_rate: float = 2e-4,
                  logging_steps: int = 50,
                  max_steps: int = 1000):
+        self.model = AutoModelForCausalLM.from_pretrained("databricks/dolly-v2-3b", device_map="auto", torch_dtype=torch.bfloat16)
+        self.tokenizer = AutoTokenizer.from_pretrained("databricks/dolly-v2-3b", padding_side="left")
                  
                  
         dataset = load_dataset("Amod/mental_health_counseling_conversations")
         dataset = dataset["train"]
 
         def tokenize_function(examples):
-            return tokenizer(examples["text"], padding="max_length", truncation=True)
+            return self.tokenizer(examples["text"], padding="max_length", truncation=True)
 
         self.dataset = dataset.map(tokenize_function, batched=True)
 
@@ -59,8 +61,6 @@ class dolly_finetune:
                     evaluation_strategy="steps",  # Evaluate the model every logging step
                     eval_steps=50,  # Evaluate and save checkpoints every 50 steps
                     )
-        self.model = AutoModelForCausalLM.from_pretrained("databricks/dolly-v2-3b", device_map="auto", torch_dtype=torch.bfloat16)
-        self.tokenizer = AutoTokenizer.from_pretrained("databricks/dolly-v2-3b", padding_side="left")
 
 
         data_collator = DataCollatorForLanguageModeling(tokenizer=self.tokenizer, mlm=False)
