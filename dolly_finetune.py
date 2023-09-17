@@ -33,11 +33,7 @@ class dolly_finetune:
                  max_steps: int = 1000):
                  
                  
-        dataset = load_dataset("Amod/mental_health_counseling_conversations")
-        dataset = dataset["train"].train_test_split(train_size=0.8)
-
-        self.train_dataset = dataset["train"]
-        self.test_dataset = dataset["test"]
+        self.dataset = load_dataset("Amod/mental_health_counseling_conversations")
 
         out_dir = f"./medicine_results/.model_name"
         out_logs = f"./medicine_results/.logs"
@@ -56,7 +52,6 @@ class dolly_finetune:
                     save_steps=50,  # Save checkpoints every 50 steps
                     evaluation_strategy="steps",  # Evaluate the model every logging step
                     eval_steps=50,  # Evaluate and save checkpoints every 50 steps
-                    do_eval=True  # Perform evaluation at the end of training
                     )
         self.model = AutoModelForCausalLM.from_pretrained("databricks/dolly-v2-3b", device_map="auto", torch_dtype=torch.bfloat16)
         self.tokenizer = AutoTokenizer.from_pretrained("databricks/dolly-v2-3b", padding_side="left")
@@ -67,10 +62,9 @@ class dolly_finetune:
         
         self.trainer = Trainer(
             model=self.model,
-            train_dataset=self.train_dataset,
-            eval_dataset=self.test_dataset,
-            tokenizer=self.tokenizer,
             data_collator=data_collator,
+            train_dataset=self.dataset,
+            tokenizer=self.tokenizer,
             args=self.training_args,  # HF Trainer arguments
         )
     
