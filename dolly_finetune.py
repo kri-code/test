@@ -33,7 +33,13 @@ class dolly_finetune:
                  max_steps: int = 1000):
                  
                  
-        self.dataset = load_dataset("Amod/mental_health_counseling_conversations")
+        dataset = load_dataset("Amod/mental_health_counseling_conversations")
+        dataset = dataset["train"]
+
+        def tokenize_function(examples):
+            return tokenizer(examples["text"], padding="max_length", truncation=True)
+
+        self.dataset = dataset.map(tokenize_function, batched=True)
 
         out_dir = f"./medicine_results/.model_name"
         out_logs = f"./medicine_results/.logs"
