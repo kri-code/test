@@ -15,9 +15,9 @@ from transformers import (
     BlenderbotTokenizer,
     AutoModel,
     BitsAndBytesConfig,
-    TrainingArguments
+    TrainingArguments.
+    Trainer
 )
-from trl import SFTTrainer
 
 
 
@@ -59,7 +59,7 @@ class dolly_finetune:
         self.model = AutoModelForCausalLM.from_pretrained("databricks/dolly-v2-3b", device_map="auto", torch_dtype=torch.bfloat16)
         self.tokenizer = AutoTokenizer.from_pretrained("databricks/dolly-v2-3b", padding_side="left")
         
-        self.trainer = SFTTrainer(
+        self.trainer = Trainer(
             model=self.base_model,
             train_dataset=self.train_dataset,
             test_dataset=self.test_dataset,
