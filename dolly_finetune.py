@@ -15,7 +15,7 @@ from transformers import (
     BlenderbotTokenizer,
     AutoModel,
     BitsAndBytesConfig,
-    TrainingArguments.
+    TrainingArguments,
     Trainer
 )
 
