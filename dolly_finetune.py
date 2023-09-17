@@ -38,7 +38,8 @@ class dolly_finetune:
         dataset = load_dataset("Amod/mental_health_counseling_conversations")
         dataset = dataset["train"]
 
-        self.dataset = self.tokenizer(dataset, truncation=True, padding=True)
+        dataset = self.tokenizer(dataset["Context"], truncation=True, padding=True)
+        self.dataset = self.tokenizer(dataset["Response"], truncation=True, padding=True)
 
         out_dir = f"./medicine_results/.model_name"
         out_logs = f"./medicine_results/.logs"
