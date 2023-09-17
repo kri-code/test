@@ -1,5 +1,7 @@
 import torch
 import transformers
+import os
+from datasets import load_dataset
 
 
 
@@ -19,8 +21,8 @@ class dolly_finetune:
         self.train_dataset = dataset["train"]
         self.test_dataset = dataset["test"]
 
-        out_dir = f"{BP}/data/finetune/{exp_name}/model"
-        out_logs = f"{BP}/data/finetune/{exp_name}/logs"
+        out_dir = f"./medicine_results/.model_name"
+        out_logs = f"./medicine_results/.logs"
         os.makedirs(out_dir, exist_ok=True)
         os.makedirs(out_logs, exist_ok=True)
 
