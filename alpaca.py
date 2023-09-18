@@ -1,7 +1,7 @@
 import transformers
 
-alpaca_model = transformers.AutoModelForCausalLM.from_pretrained("alpaca_weights")
-alpaca_tokenizer = transformers.AutoTokenizer.from_pretrained("alpaca_weights")
+alpaca_model = transformers.AutoModelForCausalLM.from_pretrained("../alpaca_weights")
+alpaca_tokenizer = transformers.AutoTokenizer.from_pretrained("../alpaca_weights")
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
