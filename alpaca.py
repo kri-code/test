@@ -1,4 +1,5 @@
 import transformers
+import torch
 
 alpaca_model = transformers.AutoModelForCausalLM.from_pretrained("../alpaca_weights")
 alpaca_tokenizer = transformers.AutoTokenizer.from_pretrained("../alpaca_weights")
