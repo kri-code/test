@@ -13,4 +13,4 @@ dialog = "Tell me about alpacas"
 
 generate_text = pipeline(dialog)
 
-print(generate_text[0]["generated_text"])
+print(generate_text[0]["answer"])
