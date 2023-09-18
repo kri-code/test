@@ -7,7 +7,7 @@ alpaca_tokenizer = transformers.AutoTokenizer.from_pretrained("../alpaca_weights
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-pipeline = pipeline(task='text-generation', model=alpaca_model, tokenizer= alpaca_tokenizer, device=device, max_length=512, do_sample=True)
+pipeline = pipeline(task='question-answering', model=alpaca_model, tokenizer= alpaca_tokenizer, device=device, max_length=512, do_sample=False)
 
 dialog = "Tell me about alpacas"
 
