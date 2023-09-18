@@ -9,7 +9,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 pipeline = pipeline(task= "text-generation", model=alpaca_model, tokenizer= alpaca_tokenizer, device=device, do_sample=False)
 
-dialog = "Tell me about alpacas"
+dialog = "Tell me about elephants"
 
 generate_text = pipeline(dialog)
 
