@@ -146,7 +146,6 @@ training_arguments = transformers.TrainingArguments(
     fp16=True,
     logging_steps=10,
     optim="adamw_torch",
-    evaluation_strategy="steps",
     save_strategy="steps",
     eval_steps=50,
     save_steps=50,
