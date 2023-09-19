@@ -44,10 +44,10 @@ alpaca_tokenizer = transformers.AutoTokenizer.from_pretrained("../alpaca_weights
 
 
 # sets the pad_token_id to 0 to represent unknown tokens and sets the padding_side to "left" to pad sequences on the left side.
-tokenizer.pad_token_id = (
+alpaca_tokenizer.pad_token_id = (
     0  # unk. we want this to be different from the eos token
 )
-tokenizer.padding_side = "left"
+alpaca_tokenizer.padding_side = "left"
 
 # load data (json file)
 data = load_dataset("json", data_files="alpaca-mental-health-dataset.json")
