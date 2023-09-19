@@ -39,7 +39,7 @@ def generate_dataset():
 generate_dataset()
 
 # load alpaca model
-alpaca_model = transformers.AutoModelForCausalLM.from_pretrained("../alpaca_weights")
+alpaca_model = transformers.AutoModelForCausalLM.from_pretrained("../alpaca_weights", device_map="auto")
 alpaca_tokenizer = transformers.AutoTokenizer.from_pretrained("../alpaca_weights")
 
 
