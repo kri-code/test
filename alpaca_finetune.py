@@ -70,7 +70,7 @@ def tokenize(prompt, add_eos_token=True):
     This function takes the generated prompt and tokenizes it using the tokenizer defined earlier. 
     It also adds an end-of-sequence token to the input sequence and sets the label to be the same as the input sequence.
     """
-    result = tokenizer(
+    result = alpaca_tokenizer(
         prompt,
         truncation=True,
         max_length=CUTOFF_LEN,
@@ -78,11 +78,11 @@ def tokenize(prompt, add_eos_token=True):
         return_tensors=None,
     )
     if (
-        result["input_ids"][-1] != tokenizer.eos_token_id
+        result["input_ids"][-1] != alpaca_tokenizer.eos_token_id
         and len(result["input_ids"]) < CUTOFF_LEN
         and add_eos_token
     ):
-        result["input_ids"].append(tokenizer.eos_token_id)
+        result["input_ids"].append(alpaca_tokenizer.eos_token_id)
         result["attention_mask"].append(1)
  
     result["labels"] = result["input_ids"].copy()
