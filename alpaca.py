@@ -20,7 +20,3 @@ output_text = alpaca_tokenizer.batch_decode(out, skip_special_tokens=True)[0]
 output_text = output_text[len(input_text) :]
 print(f"Input: {input_text}\nCompletion: {output_text}")
 
-
-generate_text = pipeline(dialog)
-
-print(generate_text[0]["generated_text"])
