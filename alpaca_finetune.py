@@ -15,6 +15,8 @@ from peft import (
  
 import fire
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
 def generate_dataset():
     # load dataset
     dataset = load_dataset("Amod/mental_health_counseling_conversations")
