@@ -16,6 +16,7 @@ from peft import (
 import fire
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
+device
 
 def generate_dataset():
     # load dataset
