@@ -175,7 +175,7 @@ model.state_dict = (
     )
 ).__get__(model, type(model))
  
-model = torch.compile(model)
+#model = torch.compile(model)
  
 trainer.train()
 model.save_pretrained(OUTPUT_DIR)
