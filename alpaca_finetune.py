@@ -36,7 +36,7 @@ def generate_dataset():
     with open("alpaca-mental-health-dataset.json", "w") as f:
         json.dump(dataset_data, f)
         
-generate_dataset()
+#generate_dataset()
 
 # load alpaca model
 alpaca_model = transformers.AutoModelForCausalLM.from_pretrained("../alpaca_weights", device_map="auto")
