@@ -158,7 +158,7 @@ training_arguments = transformers.TrainingArguments(
 
 # creates batches of input/output sequences for sequence-to-sequence models.
 data_collator = transformers.DataCollatorForSeq2Seq(
-    tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True
+    alpaca_tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True
 )
 
 trainer = transformers.Trainer(
