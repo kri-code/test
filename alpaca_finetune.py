@@ -73,13 +73,13 @@ def tokenize(prompt, add_eos_token=True):
     result = alpaca_tokenizer(
         prompt,
         truncation=True,
-        max_length=CUTOFF_LEN,
+        max_length=256 ,
         padding=False,
         return_tensors=None,
     )
     if (
         result["input_ids"][-1] != alpaca_tokenizer.eos_token_id
-        and len(result["input_ids"]) < CUTOFF_LEN
+        and len(result["input_ids"]) < 256 
         and add_eos_token
     ):
         result["input_ids"].append(alpaca_tokenizer.eos_token_id)
