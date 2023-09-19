@@ -146,12 +146,8 @@ training_arguments = transformers.TrainingArguments(
     fp16=True,
     logging_steps=10,
     optim="adamw_torch",
-    save_strategy="steps",
-    eval_steps=50,
-    save_steps=50,
     output_dir=OUTPUT_DIR,
     save_total_limit=3,
-    load_best_model_at_end=True,
     report_to="tensorboard"
 )
 
