@@ -20,5 +20,5 @@ inputs = alpaca_tokenizer(input_text, return_tensors="pt")
 out = alpaca_model.generate(inputs=inputs.input_ids, max_new_tokens=256)
 output_text = alpaca_tokenizer.batch_decode(out, skip_special_tokens=True)[0]
 output_text = output_text[len(input_text) :]
-#print(f"Input: {input_text}\nCompletion: {output_text}")
+print(f"Input: {input_text}\nCompletion: {output_text}")
 
